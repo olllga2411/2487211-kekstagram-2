@@ -83,6 +83,6 @@ findNumber2('ECMAScript 2022');
 findNumber2('1 кефир, 0.5 батона');
 findNumber2('агент 007');
 findNumber2('а я томат');
-findNumber(2023);
+findNumber2(2023);
 findNumber2(-1);
 findNumber2(1.5);
