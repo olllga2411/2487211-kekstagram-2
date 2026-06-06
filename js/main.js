@@ -1,3 +1,7 @@
+import {getRandomInteger} from './util.js';
+import {createRandomIdFromRangeGenerator} from './util.js';
+
+
 const description = [
   'мое хобби',
   'делай как я',
@@ -30,26 +34,6 @@ const messegeUser = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-
-function getRandomInteger (min, max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-}
-
-function createRandomIdFromRangeGenerator (min, max) {
-  const previousValues = [];
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-}
 
 const generatePhotoId = createRandomIdFromRangeGenerator(1, 25);
 const generateLike = getRandomInteger(15, 200);
