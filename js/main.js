@@ -54,28 +54,26 @@ function createRandomIdFromRangeGenerator (min, max) {
 const generatePhotoId = createRandomIdFromRangeGenerator(1, 25);
 const generateLike = getRandomInteger(15, 200);
 const generateUrlI = createRandomIdFromRangeGenerator(1, 25);
-const commentsId = createRandomIdFromRangeGenerator (0, 100000);
+const commentsId = createRandomIdFromRangeGenerator (1, 100000);
 const avatarNumber = getRandomInteger(1, 6);
-const numberMessege = getRandomInteger(1, 2);
+const quantityMessege = getRandomInteger(1, 2);
 const quantityComments = getRandomInteger(0, 30);
 const quantityFotos = 25;
 
-
-function message (numberMessege) {
-  if (numberMessege === 1) {
-    return messegeUser[getRandomInteger(0, messegeUser.length - 1)];
-  } else {
-    return `${messegeUser[getRandomInteger(0, messegeUser.length - 1)] } ${ messegeUser[getRandomInteger(0, messegeUser.length - 1)]}`;
+function totalMessage (quantityMessege) {
+  const textMessege = new Set([messegeUser[getRandomInteger(0, messegeUser.length - 1)]]);
+  if (quantityMessege === 2) {
+    while (textMessege.size < 2) {
+      textMessege.add(messegeUser[getRandomInteger(0, messegeUser.length - 1)]);
+    }
   }
+  return textMessege;
 }
-
-console.log(numberMessege);
-console.log(message());
 
 const createComments = () => ({
   id: commentsId(),
   avatar: `img/avatar-${ avatarNumber }.svg`,
-  message: message (numberMessege),
+  message: totalMessage (quantityMessege),
   name: nameUser[getRandomInteger(0, nameUser.length - 1)],
 });
 
@@ -93,3 +91,4 @@ const similarFotos = Array.from ({length: quantityFotos} , createComments);
 
 console.log(createFotos());
 console.log(similarFotos);
+
