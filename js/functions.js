@@ -1,13 +1,17 @@
 // Функция для проверки длины строки. Она принимает строку, которую нужно проверить на максимальную длину, и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее. Эта функция нам пригодится для валидации формы.
 
-const comparisonLengthString = function (string, maxLenth) {
-  const factLength = string.length;
-  if (factLength <= maxLenth) {
-    return true;
-  } else {
-    return false;
-  }
-};
+// const comparisonLengthString = function (string, maxLenth) {
+//   const factLength = string.length;
+//   if (factLength <= maxLenth) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
+
+// Исправила через строчную фукцию и лаконично
+
+const comparisonLengthString = (string, maxLenth) => (string.length <= maxLenth);
 
 comparisonLengthString ('кольцо', 20);
 comparisonLengthString ('привет из Питера', 25);
