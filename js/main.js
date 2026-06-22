@@ -1,4 +1,4 @@
-const description = [
+const DESCRIPTIONS = [
   'мое хобби',
   'делай как я',
   'а тебе слабо?',
@@ -10,7 +10,7 @@ const description = [
   'моя любовь',
 ];
 
-const nameUser = [
+const NAME_LIST = [
   'Андрей',
   'Ольга',
   'Сергей',
@@ -22,7 +22,7 @@ const nameUser = [
   'Олег',
 ];
 
-const messegeUser = [
+const USER_MESSAGE_LIST = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -61,10 +61,10 @@ const quantityComments = getRandomInteger(0, 30);
 const quantityFotos = 25;
 
 function totalMessage (quantityMessege) {
-  const textMessege = new Set([messegeUser[getRandomInteger(0, messegeUser.length - 1)]]);
+  const textMessege = new Set([USER_MESSAGE_LIST[getRandomInteger(0, USER_MESSAGE_LIST.length - 1)]]);
   if (quantityMessege === 2) {
     while (textMessege.size < 2) {
-      textMessege.add(messegeUser[getRandomInteger(0, messegeUser.length - 1)]);
+      textMessege.add(USER_MESSAGE_LIST[getRandomInteger(0, USER_MESSAGE_LIST.length - 1)]);
     }
   }
   return textMessege;
@@ -74,7 +74,7 @@ const createComments = () => ({
   id: commentsId(),
   avatar: `img/avatar-${ avatarNumber }.svg`,
   message: totalMessage (quantityMessege),
-  name: nameUser[getRandomInteger(0, nameUser.length - 1)],
+  name: NAME_LIST[getRandomInteger(0, NAME_LIST.length - 1)],
 });
 
 const similarComments = Array.from ({length: quantityComments} , createComments);
@@ -82,13 +82,12 @@ const similarComments = Array.from ({length: quantityComments} , createComments)
 const createFotos = () => ({
   id : generatePhotoId(),
   url : `photos/${ generateUrlI() }.jpg`,
-  description: description[getRandomInteger(0, description.length - 1)],
+  description: DESCRIPTIONS[getRandomInteger(0, DESCRIPTIONS.length - 1)],
   likes: generateLike,
   comments: similarComments
 });
 
-const similarFotos = Array.from ({length: quantityFotos} , createComments);
+const createListFotos = () => Array.from ({length: quantityFotos} , createFotos);
 
-console.log(createFotos());
-console.log(similarFotos);
+console.log (createListFotos());
 
